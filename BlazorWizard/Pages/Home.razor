@@ -1,0 +1,36 @@
+﻿@page "/"
+@using BlazorWizard.Components
+
+
+<Wizard Id="DemoWizard" CanGoToNextStep="OnCanGoToNextStep" >
+    <WizardStep Name="User Entry">
+        <UserEntry OnUserEntryResult="OnUserEntryResult" />
+    </WizardStep>
+    <WizardStep Name="Credentials">
+        <CredentialsEntry /> 
+    </WizardStep>
+    <WizardStep Name="Address">
+        <AddressEntry/>
+    </WizardStep>
+    
+    <WizardStep Name="Second Step">
+        <div class="row">
+            <p>Wow, you've reached the second step!</p>
+        </div>
+    </WizardStep>
+    <WizardStep Name="Final Step">
+        <div class="row">
+            <p>The final step has been reached. Thank you \o/</p>
+        </div>
+    </WizardStep>
+</Wizard>
+
+@code {
+    public bool OnCanGoToNextStep { get; set; }
+
+    private void OnUserEntryResult(UserEntryResult result)
+    {
+        OnCanGoToNextStep = result.IsUserEntryResultValid;
+    }
+
+}

@@ -1,0 +1,46 @@
+<h3>AddressEntry</h3>
+
+
+<EditForm Model="@address">
+    <DataAnnotationsValidator/>
+
+    <div>
+        <label for="street">Street</label>
+        <InputText id="street" @bind-Value="address.Street"/>
+    </div>
+    <div>
+        <label for="streetNumber">Street Number</label>
+        <InputText id="streetNumber" @bind-Value="address.StreetNumber"/>
+    </div>
+    <div>
+        <label for="zipCode">ZIP Code</label>
+        <InputText id="zipCode" @bind-Value="address.ZipCode"/>
+    </div>
+    <div>
+        <label for="province">Province</label>
+        <InputText id="province" @bind-Value="address.Province"/>
+    </div>
+    <div>
+        <label for="country">Country</label>
+        <InputText id="country" @bind-Value="address.Country"/>
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Address address = new Address();
+
+    public class Address
+    {
+        public string Street { get; set; }
+        public string StreetNumber { get; set; }
+        public string ZipCode { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
+    }
+
+}
+
+@code {
+    
+}
