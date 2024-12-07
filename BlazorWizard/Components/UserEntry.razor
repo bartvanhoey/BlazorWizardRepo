@@ -1,50 +1,14 @@
 @using System.ComponentModel.DataAnnotations
+
 <EditForm EditContext="@_editContext">
     <DataAnnotationsValidator/>
-    @* <ValidationSummary/> *@
-    <div>
-        <label for="firstName">First Name:</label>
-        <InputText id="firstName" @bind-Value="@_user.FirstName"/>
+    <div class="mb-3">
+        <label class="form-label" for="firstName">First Name:</label>
+        <InputText class="form-control" id="firstName" @bind-Value="@_user.FirstName"/>
     </div>
-    <div>
-        <label for="lastName">Last Name:</label>
-        <InputText id="lastName" @bind-Value="@_user.LastName"/>
+    <div class="mb-3">
+        <label class="form-label" for="lastName">Last Name:</label>
+        <InputText class="form-control" id="lastName" @bind-Value="@_user.LastName"/>
     </div>
 </EditForm>
 
-@code {
-    [Parameter] public EventCallback<UserEntryResult> OnUserEntryResult { get; set; }
-    private EditContext? _editContext;
-    private UserInfo _user = new();
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        _editContext = new EditContext(_user);
-        _editContext.OnFieldChanged += EditContextOnOnFieldChanged;
-        await Task.CompletedTask;
-    }
-
-    private void EditContextOnOnFieldChanged(object? sender, FieldChangedEventArgs e)
-    {
-        var isValid = _editContext != null && _editContext.Validate();
-        OnUserEntryResult.InvokeAsync(new UserEntryResult() { FirstName = _user.FirstName, LastName = _user.LastName, IsUserEntryResultValid = isValid });
-    }
-
-    EditForm _userEntryEditForm = new();
-
-    private class UserInfo
-    {
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-        // public DateTime DateOfBirth { get; set; }
-    }
-
-
-    [Parameter]
-    public bool IsUserEntryValid { get; set; }
-    
-    
-}

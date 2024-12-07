@@ -1,43 +1,29 @@
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
+using static System.ArgumentNullException;
 
 namespace BlazorWizard.Components
 {
     public partial class Wizard
     {
-        
-        [Parameter] public bool CanGoToNextStep { get; set; }
-
         private List<WizardStep> _steps = [];
-        
-        [Parameter]
-        public string Id { get; set; }
-
-       
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
-        
-        [Parameter]
-        public WizardStep ActiveStep { get; set; }
-        
-        [Parameter]
-        public int ActiveStepIx { get; set; }
-
+        [Parameter] public bool ShowNextButton { get; set; }
+        [Parameter] public string? Id { get; set; }
+        [Parameter] public RenderFragment? ChildContent { get; set; }
+        [Parameter] public WizardStep? ActiveStep { get; set; }
+        [Parameter] public int ActiveStepIx { get; set; }
         private bool IsLastStep { get; set; }
 
-
-        private void GoBack()
+        private void PreviousButtonClicked()
         {
             if (ActiveStepIx > 0)
                 SetActive(_steps[ActiveStepIx - 1]);
         }
 
-        private void GoNext()
+        private void NextButtonClicked()
         {
             if (ActiveStepIx < _steps.Count - 1)
-                SetActive(_steps[_steps.IndexOf(ActiveStep) + 1]);
-            CanGoToNextStep = false;
+                SetActive(_steps[_steps.IndexOf(ActiveStep ?? throw new InvalidOperationException()) + 1]);
+            ShowNextButton = false;
         }
 
 
@@ -53,17 +39,14 @@ namespace BlazorWizard.Components
         }
 
         public int StepsIndex(WizardStep step) => StepsIndexInternal(step);
-        protected int StepsIndexInternal(WizardStep step)
-        {
-            if (step == null)
-                throw new ArgumentNullException(nameof(step));
 
+        private int StepsIndexInternal(WizardStep step)
+        {
+            ThrowIfNull(step);
             return _steps.IndexOf(step);
         }
-        protected internal void AddStep(WizardStep step)
-        {
-            _steps.Add(step);
-        }
+
+        protected internal void AddStep(WizardStep step) => _steps.Add(step);
 
         protected override void OnAfterRender(bool firstRender)
         {

@@ -1,18 +1,16 @@
 ﻿@page "/"
 @using BlazorWizard.Components
 
-
-<Wizard Id="DemoWizard" CanGoToNextStep="OnCanGoToNextStep" >
+<Wizard Id="DemoWizard" ShowNextButton="ShowNextButton" >
     <WizardStep Name="User Entry">
-        <UserEntry OnUserEntryResult="OnUserEntryResult" />
+        <UserEntry OnUserEntryEntered="OnUserEntryResult" />
     </WizardStep>
     <WizardStep Name="Credentials">
-        <CredentialsEntry /> 
+        <CredentialsEntry OnCredentialsEntered="OnCredentialsEntryResult" /> 
     </WizardStep>
     <WizardStep Name="Address">
         <AddressEntry/>
     </WizardStep>
-    
     <WizardStep Name="Second Step">
         <div class="row">
             <p>Wow, you've reached the second step!</p>
@@ -26,11 +24,17 @@
 </Wizard>
 
 @code {
-    public bool OnCanGoToNextStep { get; set; }
+    public bool ShowNextButton { get; set; }
 
     private void OnUserEntryResult(UserEntryResult result)
     {
-        OnCanGoToNextStep = result.IsUserEntryResultValid;
+        ShowNextButton = result.IsValidResult;
+    }
+
+
+    private void OnCredentialsEntryResult(CredentialEntryResult result)
+    {
+        ShowNextButton = result.IsValidResult;
     }
 
 }
