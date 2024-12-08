@@ -1,7 +1,8 @@
 ﻿@page "/"
 @using BlazorWizard.Components
 
-<Wizard OnWizardFinished="WizardFinished" Id="DemoWizard" ShowNextButton="ShowNextButton" SubmitButton="Opslaan" NextButton="Volgende" PreviousButton="Terug">
+<Wizard OnWizardFinished="WizardFinished" Id="DemoWizard" 
+        ShowNextButton="ShowNextButton" SubmitButton="Opslaan" NextButton="Volgende" PreviousButton="Terug">
     <WizardStep Title="User Entry">
         <UserEntry OnUserInfoEntered="UserInfoEntered" />
     </WizardStep>
@@ -16,11 +17,11 @@
     @*         <p>Wow, you've reached the second step!</p> *@
     @*     </div> *@
     @* </WizardStep> *@
-    <WizardStep Title="Final Step">
-        <div class="row">
-            <p>The final step has been reached. Thank you \o/</p>
-        </div>
-    </WizardStep>
+    @* <WizardStep Title="Final Step"> *@
+    @*     <div class="row"> *@
+    @*         <p>The final step has been reached. Thank you \o/</p> *@
+    @*     </div> *@
+    @* </WizardStep> *@
 </Wizard>
 
 

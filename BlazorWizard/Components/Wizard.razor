@@ -19,7 +19,8 @@
 
     @if (ShowNextButton)
     {
-        <button class="btn btn-primary ms-1"  type="@(IsLastStep ? "submit" : "button")" @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : NextButton)</button>
+        <button class="btn btn-primary ms-1" type="@(IsLastStep ? "submit" : "button")" 
+                @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : NextButton)</button>
     }
 
 

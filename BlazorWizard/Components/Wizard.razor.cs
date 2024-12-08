@@ -6,15 +6,15 @@ namespace BlazorWizard.Components
     public partial class Wizard
     {
         private List<WizardStep> _steps = [];
-        
+
         [Parameter] public EventCallback<WizardFinishedResult> OnWizardFinished { get; set; }
         [Parameter] public bool ShowNextButton { get; set; }
         [Parameter] public string? Id { get; set; }
-        
+
         [Parameter] public string? PreviousButton { get; set; } = "Previous";
-        
+
         [Parameter] public string? NextButton { get; set; } = "Next";
-        
+
         [Parameter] public string? SubmitButton { get; set; } = "Submit";
         [Parameter] public RenderFragment? ChildContent { get; set; }
         [Parameter] public WizardStep? ActiveStep { get; set; }
@@ -32,10 +32,14 @@ namespace BlazorWizard.Components
             Console.WriteLine(
                 $"ActiveStep: {ActiveStep?.Title}, IndexActiveStep: {IndexActiveStep}, IsLastStep: {IsLastStep}");
             if (IndexActiveStep < _steps.Count - 1)
+            {
                 SetActive(_steps[_steps.IndexOf(ActiveStep ?? throw new InvalidOperationException()) + 1]);
-            if (IndexActiveStep == _steps.Count)
+                ShowNextButton = false;
+            }
+            else if (IsLastStep)
+            {
                 OnWizardFinished.InvokeAsync(new WizardFinishedResult());
-            ShowNextButton = false;
+            }
         }
 
 
