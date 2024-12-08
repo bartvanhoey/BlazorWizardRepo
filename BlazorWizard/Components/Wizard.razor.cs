@@ -9,6 +9,7 @@ namespace BlazorWizard.Components
 
         [Parameter] public EventCallback<WizardFinishedResult> OnWizardFinished { get; set; }
         [Parameter] public bool ShowNextButton { get; set; }
+        public bool ShowSubmitButton { get; set; }
         [Parameter] public string? Id { get; set; }
 
         [Parameter] public string? PreviousButton { get; set; } = "Previous";
@@ -66,14 +67,5 @@ namespace BlazorWizard.Components
             SetActive(_steps[0]);
             StateHasChanged();
         }
-    }
-
-    public class WizardFinishedResult(bool isFinished)
-    {
-        public WizardFinishedResult() : this(true)
-        {
-        }
-
-        public bool IsFinished { get; set; } = isFinished;
     }
 }

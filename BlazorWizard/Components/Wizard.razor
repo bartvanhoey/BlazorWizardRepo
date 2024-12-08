@@ -17,7 +17,7 @@
     <button class="btn btn-primary" type="button" disabled="@(IndexActiveStep == 0)" @onclick="PreviousButtonClicked">@PreviousButton </button>
 
 
-    @if (ShowNextButton)
+    @if (ShowNextButton || ShowSubmitButton)
     {
         <button class="btn btn-primary ms-1" type="@(IsLastStep ? "submit" : "button")" 
                 @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : NextButton)</button>
