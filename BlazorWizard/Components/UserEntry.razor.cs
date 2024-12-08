@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+using BlazorWizard.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -21,11 +21,5 @@ public partial class UserEntry : ComponentBase
     {
         var isValid = _editContext != null && _editContext.Validate();
         OnUserInfoEntered.InvokeAsync(new UserInfoResult(_userInfoInputModel.FirstName, _userInfoInputModel.LastName, isValid));
-    }
-
-    private class UserInfoInputModel
-    {
-        [Required] public string? FirstName { get; set; }
-        [Required] public string? LastName { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace BlazorWizard.Components;
+namespace BlazorWizard.Models;
 
 public class UserInfoResult
 {

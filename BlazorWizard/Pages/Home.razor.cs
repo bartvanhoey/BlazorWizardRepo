@@ -1,4 +1,5 @@
 using BlazorWizard.Components;
+using BlazorWizard.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorWizard.Pages;

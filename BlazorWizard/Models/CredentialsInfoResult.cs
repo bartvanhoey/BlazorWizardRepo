@@ -1,4 +1,4 @@
-namespace BlazorWizard.Components;
+namespace BlazorWizard.Models;
 
 public class CredentialsInfoResult(string? credentialsUsername, string? credentialsPassword, bool isValidResult)
 {
