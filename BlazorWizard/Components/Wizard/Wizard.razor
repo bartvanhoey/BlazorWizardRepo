@@ -1,6 +1,6 @@
 <CascadingValue Value="this">
     <div id="@Id">
-        @if (ShowPills)
+        @if (ShowSteps)
         {
             <ul class="nav nav-pills nav-justified">
                 @foreach (var step in _steps)
@@ -28,7 +28,7 @@
     @if (ShowNextButton || (ShowSubmitButton && IsLastStep))
     {
         <button class="@CssNextButton" type="@(IsLastStep ? "submit" : "button")"
-                @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : TextNextButton)</button>
+                @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? TextSubmitButton : TextNextButton)</button>
     }
 
 

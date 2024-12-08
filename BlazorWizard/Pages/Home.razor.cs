@@ -1,4 +1,4 @@
-using BlazorWizard.Components;
+using BlazorWizard.Components.Wizard;
 using BlazorWizard.Models;
 using Microsoft.AspNetCore.Components;
 
@@ -6,7 +6,7 @@ namespace BlazorWizard.Pages;
 
 public partial class Home : ComponentBase
 {
-    private UserModel UserModel { get; set; } = new();
+    private UserModel UserModel { get; } = new();
     public bool ShowNextButton { get; set; }
 
     private void UserInfoEntered(UserInfoResult result)
@@ -34,7 +34,8 @@ public partial class Home : ComponentBase
         UserModel.Address.Country = result.Country;
     }
 
-    private void WizardFinished(WizardFinishedResult result)
+    private void 
+        WizardFinished(WizardFinishedResult result)
     {
         if (result.IsNotFinished) return;
         Console.WriteLine("Wizard Finished");

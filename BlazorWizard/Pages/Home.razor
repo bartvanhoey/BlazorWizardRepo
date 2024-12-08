@@ -1,9 +1,10 @@
 ﻿@page "/"
 @using BlazorWizard.Components
+@using BlazorWizard.Components.Wizard
 
 
 <Wizard OnWizardFinished="WizardFinished" Id="DemoWizard" 
-        ShowNextButton="ShowNextButton" SubmitButton="Opslaan" TextNextButton="Volgende" TextPreviousButton="Terug" CssNextButton="btn btn-secondary" CssPreviousButton="btn btn-danger" ShowPills="true" ShowTitle="false">
+        ShowNextButton="ShowNextButton" CssNextButton="btn btn-secondary" CssPreviousButton="btn btn-danger" ShowSteps="true" ShowTitle="false">
     <WizardStep Title="User Entry">
         <UserEntry OnUserInfoEntered="UserInfoEntered" />
     </WizardStep>

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using static System.ArgumentNullException;
 
-namespace BlazorWizard.Components
+namespace BlazorWizard.Components.Wizard
 {
     public partial class Wizard
     {
@@ -9,7 +9,7 @@ namespace BlazorWizard.Components
 
         [Parameter] public EventCallback<WizardFinishedResult> OnWizardFinished { get; set; }
         [Parameter] public bool ShowTitle { get; set; } = true;
-        [Parameter] public bool ShowPills { get; set; }
+        [Parameter] public bool ShowSteps { get; set; }
         [Parameter] public bool ShowNextButton { get; set; }
         public bool ShowSubmitButton { get; set; }
         [Parameter] public string? Id { get; set; }
@@ -17,7 +17,7 @@ namespace BlazorWizard.Components
         [Parameter] public string? CssNextButton { get; set; } = "btn btn-primary ms-1";
         [Parameter] public string? TextPreviousButton { get; set; } = "Previous";
         [Parameter] public string? TextNextButton { get; set; } = "Next";
-        [Parameter] public string? SubmitButton { get; set; } = "Submit";
+        [Parameter] public string? TextSubmitButton { get; set; } = "Submit";
         [Parameter] public RenderFragment? ChildContent { get; set; }
         [Parameter] public WizardStep? ActiveStep { get; set; }
         [Parameter] public int IndexActiveStep { get; set; }

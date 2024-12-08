@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorWizard.Components
+namespace BlazorWizard.Components.Wizard
 {
     
     public partial class WizardStep
     {
-        [CascadingParameter] protected internal Wizard? Parent { get; set; }
+        [CascadingParameter] protected internal Components.Wizard.Wizard? Parent { get; set; }
         [Parameter] public RenderFragment? ChildContent { get; set; }
         [Parameter] public string Title { get; set; } = "";
         [Parameter] public bool ShowSubmitButton { get; set; }

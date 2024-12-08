@@ -1,4 +1,4 @@
-namespace BlazorWizard.Components;
+namespace BlazorWizard.Components.Wizard;
 
 public class WizardFinishedResult(bool isFinished)
 {
