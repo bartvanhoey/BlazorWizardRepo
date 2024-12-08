@@ -2,7 +2,7 @@
 @using BlazorWizard.Components
 
 <Wizard OnWizardFinished="WizardFinished" Id="DemoWizard" 
-        ShowNextButton="ShowNextButton" SubmitButton="Opslaan" NextButton="Volgende" PreviousButton="Terug">
+        ShowNextButton="ShowNextButton" SubmitButton="Opslaan" TextNextButton="Volgende" TextPreviousButton="Terug" CssNextButton="btn btn-secondary" CssPreviousButton="btn btn-danger" ShowPills="true" ShowTitle="false">
     <WizardStep Title="User Entry">
         <UserEntry OnUserInfoEntered="UserInfoEntered" />
     </WizardStep>
@@ -12,11 +12,6 @@
     <WizardStep Title="Address">
         <AddressEntry OnAddressInfoEntered="AddressInfoEntered"/>
     </WizardStep>
-    @* <WizardStep Title="Second Step"> *@
-    @*     <div class="row"> *@
-    @*         <p>Wow, you've reached the second step!</p> *@
-    @*     </div> *@
-    @* </WizardStep> *@
     <WizardStep Title="Final Step" ShowSubmitButton="true"  >
         
         <div class="row">

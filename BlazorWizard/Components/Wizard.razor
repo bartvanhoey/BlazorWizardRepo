@@ -1,26 +1,34 @@
 <CascadingValue Value="this">
     <div id="@Id">
-        @* <ul class="nav nav-pills nav-justified"> *@
-        @*     @foreach (var step in _steps) *@
-        @*     { *@
-        @*         <li id="step-@(StepsIndex(step) + 1)" class="nav-item"> *@
-        @*             <a class="nav-link @((ActiveStep == step) ? "active" : "")" href="javascript: void(0)" *@
-        @*                @onclick="@(e=> SetActive(step))">@step.Name</a> *@
-        @*         </li> *@
-        @*     } *@
-        @* </ul> *@
-        <h3>@ActiveStep?.Title</h3>  
+        @if (ShowPills)
+        {
+            <ul class="nav nav-pills nav-justified">
+                @foreach (var step in _steps)
+                {
+                    <li id="step-@(StepsIndex(step) + 1)" class="nav-item">
+                        <a class="nav-link @(ActiveStep == step ? "active" : "")" href="javascript: void(0)"
+                           @onclick="@(e => SetActive(step))">@step.Title</a>
+                    </li>
+                }
+            </ul>
+        }
+        @if (ShowTitle)
+        {
+            <h3>@ActiveStep?.Title</h3>
+        }
+
         <div id="container-fluid">
             @ChildContent
         </div>
     </div>
-    <button class="btn btn-primary" type="button" disabled="@(IndexActiveStep == 0)" @onclick="PreviousButtonClicked">@PreviousButton </button>
+    <button class="@CssPreviousButton" type="button" disabled="@(IndexActiveStep == 0)"
+            @onclick="PreviousButtonClicked">@TextPreviousButton </button>
 
 
-    @if (ShowNextButton || ShowSubmitButton)
+    @if (ShowNextButton || (ShowSubmitButton && IsLastStep))
     {
-        <button class="btn btn-primary ms-1" type="@(IsLastStep ? "submit" : "button")" 
-                @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : NextButton)</button>
+        <button class="@CssNextButton" type="@(IsLastStep ? "submit" : "button")"
+                @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : TextNextButton)</button>
     }
 
 

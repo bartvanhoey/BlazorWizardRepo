@@ -8,14 +8,15 @@ namespace BlazorWizard.Components
         private List<WizardStep> _steps = [];
 
         [Parameter] public EventCallback<WizardFinishedResult> OnWizardFinished { get; set; }
+        [Parameter] public bool ShowTitle { get; set; } = true;
+        [Parameter] public bool ShowPills { get; set; }
         [Parameter] public bool ShowNextButton { get; set; }
         public bool ShowSubmitButton { get; set; }
         [Parameter] public string? Id { get; set; }
-
-        [Parameter] public string? PreviousButton { get; set; } = "Previous";
-
-        [Parameter] public string? NextButton { get; set; } = "Next";
-
+        [Parameter] public string? CssPreviousButton { get; set; } = "btn btn-primary";
+        [Parameter] public string? CssNextButton { get; set; } = "btn btn-primary ms-1";
+        [Parameter] public string? TextPreviousButton { get; set; } = "Previous";
+        [Parameter] public string? TextNextButton { get; set; } = "Next";
         [Parameter] public string? SubmitButton { get; set; } = "Submit";
         [Parameter] public RenderFragment? ChildContent { get; set; }
         [Parameter] public WizardStep? ActiveStep { get; set; }
