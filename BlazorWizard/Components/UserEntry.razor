@@ -1,14 +1,12 @@
-@using System.ComponentModel.DataAnnotations
-
 <EditForm EditContext="@_editContext">
     <DataAnnotationsValidator/>
     <div class="mb-3">
         <label class="form-label" for="firstName">First Name:</label>
-        <InputText class="form-control" id="firstName" @bind-Value="@_user.FirstName"/>
+        <InputText class="form-control" id="firstName" @bind-Value="@_userInfoInputModel.FirstName"/>
     </div>
     <div class="mb-3">
         <label class="form-label" for="lastName">Last Name:</label>
-        <InputText class="form-control" id="lastName" @bind-Value="@_user.LastName"/>
+        <InputText class="form-control" id="lastName" @bind-Value="@_userInfoInputModel.LastName"/>
     </div>
 </EditForm>
 

@@ -1,12 +1,12 @@
 namespace BlazorWizard.Components;
 
-public class UserEntryResult
+public class UserInfoResult
 {
-    public UserEntryResult()
+    public UserInfoResult()
     {
     }
 
-    public UserEntryResult(string? firstName, string? lastName, bool isValidResult)
+    public UserInfoResult(string? firstName, string? lastName, bool isValidResult)
     {
         FirstName = firstName;
         LastName = lastName;

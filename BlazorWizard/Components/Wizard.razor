@@ -9,16 +9,17 @@
         @*         </li> *@
         @*     } *@
         @* </ul> *@
+        <h3>@ActiveStep?.Title</h3>  
         <div id="container-fluid">
             @ChildContent
         </div>
     </div>
-    <button class="btn btn-primary" type="button" disabled="@(ActiveStepIx == 0)" @onclick="PreviousButtonClicked">Previous </button>
+    <button class="btn btn-primary" type="button" disabled="@(IndexActiveStep == 0)" @onclick="PreviousButtonClicked">@PreviousButton </button>
 
 
     @if (ShowNextButton)
     {
-        <button class="btn btn-primary"  type="@(IsLastStep ? "submit" : "button")" @onclick="NextButtonClicked">@(IsLastStep ? "Submit" : "Next")</button>
+        <button class="btn btn-primary ms-1"  type="@(IsLastStep ? "submit" : "button")" @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? SubmitButton : NextButton)</button>
     }
 
 

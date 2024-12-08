@@ -23,7 +23,7 @@ namespace BlazorWizard.Components
         /// The Name of the step
         /// </summary>
         [Parameter]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
       
         protected override void OnInitialized()

@@ -6,24 +6,24 @@ namespace BlazorWizard.Components;
 
 public partial class UserEntry : ComponentBase
 {
-    [Parameter] public EventCallback<UserEntryResult> OnUserEntryEntered { get; set; }
+    [Parameter] public EventCallback<UserInfoResult> OnUserInfoEntered { get; set; }
     [Parameter] public bool IsUserEntryValid { get; set; }
     private EditContext? _editContext;
-    private UserInfo _user = new();
+    private UserInfoInputModel _userInfoInputModel = new();
 
     protected override void OnInitialized()
     {
-        _editContext = new EditContext(_user);
-        _editContext.OnFieldChanged += EditContextOnOnFieldChanged;
+        _editContext = new EditContext(_userInfoInputModel);
+        _editContext.OnFieldChanged += EditContextOnFieldChanged;
     }
 
-    private void EditContextOnOnFieldChanged(object? sender, FieldChangedEventArgs e)
+    private void EditContextOnFieldChanged(object? sender, FieldChangedEventArgs e)
     {
         var isValid = _editContext != null && _editContext.Validate();
-        OnUserEntryEntered.InvokeAsync(new UserEntryResult(_user.FirstName, _user.LastName, isValid));
+        OnUserInfoEntered.InvokeAsync(new UserInfoResult(_userInfoInputModel.FirstName, _userInfoInputModel.LastName, isValid));
     }
 
-    private class UserInfo
+    private class UserInfoInputModel
     {
         [Required] public string? FirstName { get; set; }
         [Required] public string? LastName { get; set; }

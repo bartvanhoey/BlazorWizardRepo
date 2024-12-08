@@ -6,36 +6,44 @@ namespace BlazorWizard.Components
     public partial class Wizard
     {
         private List<WizardStep> _steps = [];
+        
+        [Parameter] public EventCallback<WizardFinishedResult> OnWizardFinished { get; set; }
         [Parameter] public bool ShowNextButton { get; set; }
         [Parameter] public string? Id { get; set; }
+        
+        [Parameter] public string? PreviousButton { get; set; } = "Previous";
+        
+        [Parameter] public string? NextButton { get; set; } = "Next";
+        
+        [Parameter] public string? SubmitButton { get; set; } = "Submit";
         [Parameter] public RenderFragment? ChildContent { get; set; }
         [Parameter] public WizardStep? ActiveStep { get; set; }
-        [Parameter] public int ActiveStepIx { get; set; }
+        [Parameter] public int IndexActiveStep { get; set; }
         private bool IsLastStep { get; set; }
 
         private void PreviousButtonClicked()
         {
-            if (ActiveStepIx > 0)
-                SetActive(_steps[ActiveStepIx - 1]);
+            if (IndexActiveStep > 0)
+                SetActive(_steps[IndexActiveStep - 1]);
         }
 
-        private void NextButtonClicked()
+        private void NextOrSubmitButtonClicked()
         {
-            if (ActiveStepIx < _steps.Count - 1)
+            Console.WriteLine(
+                $"ActiveStep: {ActiveStep?.Title}, IndexActiveStep: {IndexActiveStep}, IsLastStep: {IsLastStep}");
+            if (IndexActiveStep < _steps.Count - 1)
                 SetActive(_steps[_steps.IndexOf(ActiveStep ?? throw new InvalidOperationException()) + 1]);
+            if (IndexActiveStep == _steps.Count)
+                OnWizardFinished.InvokeAsync(new WizardFinishedResult());
             ShowNextButton = false;
         }
 
 
-        protected internal void SetActive(WizardStep step)
+        private void SetActive(WizardStep step)
         {
             ActiveStep = step ?? throw new ArgumentNullException(nameof(step));
-
-            ActiveStepIx = StepsIndex(step);
-            if (ActiveStepIx == _steps.Count - 1)
-                IsLastStep = true;
-            else
-                IsLastStep = false;
+            IndexActiveStep = StepsIndex(step);
+            IsLastStep = IndexActiveStep == _steps.Count - 1;
         }
 
         public int StepsIndex(WizardStep step) => StepsIndexInternal(step);
@@ -50,11 +58,18 @@ namespace BlazorWizard.Components
 
         protected override void OnAfterRender(bool firstRender)
         {
-            if (firstRender)
-            {
-                SetActive(_steps[0]);
-                StateHasChanged();
-            }
+            if (!firstRender) return;
+            SetActive(_steps[0]);
+            StateHasChanged();
         }
+    }
+
+    public class WizardFinishedResult(bool isFinished)
+    {
+        public WizardFinishedResult() : this(true)
+        {
+        }
+
+        public bool IsFinished { get; set; } = isFinished;
     }
 }

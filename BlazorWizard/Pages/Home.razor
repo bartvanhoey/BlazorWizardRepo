@@ -1,40 +1,26 @@
 ﻿@page "/"
 @using BlazorWizard.Components
 
-<Wizard Id="DemoWizard" ShowNextButton="ShowNextButton" >
-    <WizardStep Name="User Entry">
-        <UserEntry OnUserEntryEntered="OnUserEntryResult" />
+<Wizard OnWizardFinished="WizardFinished" Id="DemoWizard" ShowNextButton="ShowNextButton" SubmitButton="Opslaan" NextButton="Volgende" PreviousButton="Terug">
+    <WizardStep Title="User Entry">
+        <UserEntry OnUserInfoEntered="UserInfoEntered" />
     </WizardStep>
-    <WizardStep Name="Credentials">
-        <CredentialsEntry OnCredentialsEntered="OnCredentialsEntryResult" /> 
+    <WizardStep Title="Credentials">
+        <CredentialsEntry OnCredentialsEntered="CredentialsEntered" /> 
     </WizardStep>
-    <WizardStep Name="Address">
-        <AddressEntry/>
+    <WizardStep Title="Address">
+        <AddressEntry OnAddressInfoEntered="AddressInfoEntered"/>
     </WizardStep>
-    <WizardStep Name="Second Step">
-        <div class="row">
-            <p>Wow, you've reached the second step!</p>
-        </div>
-    </WizardStep>
-    <WizardStep Name="Final Step">
+    @* <WizardStep Title="Second Step"> *@
+    @*     <div class="row"> *@
+    @*         <p>Wow, you've reached the second step!</p> *@
+    @*     </div> *@
+    @* </WizardStep> *@
+    <WizardStep Title="Final Step">
         <div class="row">
             <p>The final step has been reached. Thank you \o/</p>
         </div>
     </WizardStep>
 </Wizard>
 
-@code {
-    public bool ShowNextButton { get; set; }
 
-    private void OnUserEntryResult(UserEntryResult result)
-    {
-        ShowNextButton = result.IsValidResult;
-    }
-
-
-    private void OnCredentialsEntryResult(CredentialEntryResult result)
-    {
-        ShowNextButton = result.IsValidResult;
-    }
-
-}

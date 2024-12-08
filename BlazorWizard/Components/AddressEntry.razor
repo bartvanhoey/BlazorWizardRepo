@@ -1,46 +1,28 @@
-<h3>AddressEntry</h3>
-
-
-<EditForm Model="@address">
+<EditForm EditContext="@_editContext" >
     <DataAnnotationsValidator/>
-
-    <div>
-        <label for="street">Street</label>
-        <InputText id="street" @bind-Value="address.Street"/>
+    <div class="mb-3">
+        <label class="form-label" for="street">Street</label>
+        <InputText class="form-control" id="street" @bind-Value="_addressInputModel.Street"/>
     </div>
-    <div>
-        <label for="streetNumber">Street Number</label>
-        <InputText id="streetNumber" @bind-Value="address.StreetNumber"/>
+    <div class="mb-3">
+        <label class="form-label" for="streetNumber">Street Number</label>
+        <InputText class="form-control" id="streetNumber" @bind-Value="_addressInputModel.StreetNumber"/>
     </div>
-    <div>
-        <label for="zipCode">ZIP Code</label>
-        <InputText id="zipCode" @bind-Value="address.ZipCode"/>
+    <div class="mb-3">
+        <label class="form-label"  for="zipCode">ZIP Code</label>
+        <InputText class="form-control" id="zipCode" @bind-Value="_addressInputModel.ZipCode"/>
     </div>
-    <div>
-        <label for="province">Province</label>
-        <InputText id="province" @bind-Value="address.Province"/>
+    <div class="mb-3">
+        <label class="form-label" for="city">City</label>
+        <InputText class="form-control" id="city" @bind-Value="_addressInputModel.City"/>
     </div>
-    <div>
-        <label for="country">Country</label>
-        <InputText id="country" @bind-Value="address.Country"/>
+    <div class="mb-3">
+        <label class="form-label" for="province">Province</label>
+        <InputText class="form-control" id="province" @bind-Value="_addressInputModel.Province"/>
     </div>
-    <button type="submit">Submit</button>
+    <div class="mb-3">
+        <label class="form-label" for="country">Country</label>
+        <InputText class="form-control" id="country" @bind-Value="_addressInputModel.Country"/>
+    </div>
 </EditForm>
 
-@code {
-    private Address address = new Address();
-
-    public class Address
-    {
-        public string Street { get; set; }
-        public string StreetNumber { get; set; }
-        public string ZipCode { get; set; }
-        public string Province { get; set; }
-        public string Country { get; set; }
-    }
-
-}
-
-@code {
-    
-}
