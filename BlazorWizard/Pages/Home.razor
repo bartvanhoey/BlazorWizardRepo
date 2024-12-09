@@ -1,24 +1,43 @@
 ﻿@page "/"
 @using BlazorWizard.Components
 @using BlazorWizard.Components.Wizard
+@using BlazorWizard.Components.TabControl
 
 
-<Wizard OnWizardFinished="WizardFinished" Id="DemoWizard" 
-        ShowNextButton="ShowNextButton" CssNextButton="btn btn-secondary" CssPreviousButton="btn btn-danger" ShowSteps="true" ShowTitle="false">
-    <WizardStep Title="User Entry">
-        <UserEntry OnUserInfoEntered="UserInfoEntered" />
-    </WizardStep>
-    <WizardStep Title="Credentials">
-        <CredentialsEntry OnCredentialsEntered="CredentialsEntered" /> 
-    </WizardStep>
-    <WizardStep Title="Address">
-        <AddressEntry OnAddressInfoEntered="AddressInfoEntered"/>
-    </WizardStep>
-    <WizardStep Title="Final Step" ShowSubmitButton="true"  >
-        <div class="row">
-            <p>The final step has been reached. Thank you \o/</p>
-        </div>
-    </WizardStep>
-</Wizard>
+<TabControl>
+    <TabPage Text="Title of the first tab">
+        <Wizard ShowNextButton="@ShowNextButton" >
+            <WizardStep StepTitle="Initialization of car from database">
+                <LoadCarsFromDatabase OnCarFromDatabaseLoaded="CarFromDatabaseLoaded"/>
+            </WizardStep>
+            <WizardStep StepTitle="User Entry">
+                <UserEntry OnUserInfoEntered="UserInfoEntered" />
+            </WizardStep>
+            <WizardStep StepTitle="Credentials">
+                <CredentialsEntry OnCredentialsEntered="CredentialsEntered"/>
+            </WizardStep>
+            <WizardStep StepTitle="Address">
+                <AddressEntry OnAddressInfoEntered="AddressInfoEntered"/>
+            </WizardStep>
+            <WizardStep StepTitle="Final Step" ShowSubmitButton="true" TextSubmitButton="Back to Start" >
+                <div class="row">
+                    <p>The final step has been reached. Thank you \o/</p>
+                </div>
+            </WizardStep>
+        </Wizard>
+    </TabPage>
+    <TabPage Text="Title of the second tab">
+
+    </TabPage>
+    <TabPage Text="Title of the third tab">
+
+    </TabPage>
+    <TabPage Text="Title of the fourth tab">
+
+    </TabPage>
+</TabControl>
+
+
+
 
 

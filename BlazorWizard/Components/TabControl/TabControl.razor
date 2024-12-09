@@ -1,0 +1,39 @@
+<ul class="nav nav-underline">
+    @foreach (var tabPage in _pages)
+    {
+        <li class="nav-item">
+            <a class="nav-link @GetActiveClass(tabPage)" onclick="@(() => ActivatePage(tabPage))" aria-current="page">@tabPage.Text </a>
+        </li>
+    }
+</ul>
+
+
+<CascadingValue Value="this">
+    @ChildContent 
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+
+    public TabPage? ActivePage { get; set; }
+    List<TabPage?> _pages = [];
+
+    internal void AddPage(TabPage? tabPage)
+    {
+        _pages.Add(tabPage);
+        if (_pages.Count == 1)
+            ActivePage = tabPage;
+        StateHasChanged();
+    }
+
+    private string GetActiveClass(TabPage? page) => page == ActivePage ? "active" : "";
+
+    private void ActivatePage(TabPage? page)
+    {
+        ActivePage = page;
+        StateHasChanged();
+    }
+
+}

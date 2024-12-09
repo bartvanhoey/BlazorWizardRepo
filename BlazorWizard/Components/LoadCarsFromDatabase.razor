@@ -1,0 +1,104 @@
+<div class="row">
+
+    <div class="input-group">
+        <input id="idSearchInput" name="searchInput" @bind-value="SearchText"
+               type="search" @onkeyup="HandleOnKeyup" @oninput="HandleOnInput" class="form-control"
+               placeholder="Enter text to search..." maxlength="8" width="20%"/>
+        <div class="input-group-append">
+            <button class="btn btn-primary ms-2" disabled="@IsSearchButtonDisabled" @onclick="SearchCar">
+                Search
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Channel</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var car in Cars)
+        {
+            <tr class='@(car == _selectedCar ? "row-active" : "")' @onclick="() => _selectedCar = car">
+                <td>@car?.SerialNumber</td>
+                <td>@car?.Channel</td>
+                <td>@car?.Date</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+
+<div class="row pt-2">
+    <button type="button" class="btn btn-primary" @onclick="@LoadCar">Load Car</button>
+
+</div>
+
+
+<div class="row pt-2">
+    <div class="d-flex flex-column align-items-center pt-3">
+        @* Type *@
+        <div class="row g-3 align-items-center pt-2">
+            <div class="col-sm custom-label-col">
+                <label for="idType" class="col-form-label">Type</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" id="idType" class="form-control" disabled>
+            </div>
+        </div>
+        @* Serial Number *@
+        <div class="row g-3 align-items-center pt-2">
+            <div class="col-sm custom-label-col">
+                <label for="idSerialNumber" class="col-form-label">Serial Number</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" id="idSerialNumber" class="form-control" disabled>
+            </div>
+        </div>
+        @* Sofware Version *@
+        <div class="row g-3 align-items-center pt-2">
+            <div class="col-sm  custom-label-col">
+                <label for="idSoftwareVersion" class="col-form-label">Software Version</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" id="idSoftwareVersion" class="form-control" disabled>
+            </div>
+        </div>
+        @* Pressure Sensor *@
+        <div class="row g-3 align-items-center pt-2">
+            <div class="col-sm  custom-label-col">
+                <label for="idPressure" class="col-form-label">Pressure Sensor</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" id="idPressure" class="form-control" disabled>
+            </div>
+        </div>
+        @* XDATA *@
+        <div class="row g-3 align-items-center pt-2">
+            <div class="col-sm  custom-label-col">
+                <label for="idXdata" class="col-form-label">XDATA</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" id="idXdata" class="form-control" disabled>
+            </div>
+        </div>
+        @* Channel *@
+        <div class="row g-3 align-items-center pt-2">
+            <div class="col-sm custom-label-col">
+                <label for="idChannel" class="col-form-label">Channel</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" id="idChannel" class="form-control" disabled>
+            </div>
+        </div>
+    </div>
+
+</div>

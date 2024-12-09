@@ -1,0 +1,21 @@
+.custom-label-col {
+    width: 170px;
+}
+
+tbody {
+    display: block;
+    height: 120px;
+    overflow-y: scroll;
+}
+
+tr {
+    display: block;
+}
+
+th, td {
+    width: 250px;
+}
+
+.row-active {
+    --bs-table-bg: lightgreen;
+}

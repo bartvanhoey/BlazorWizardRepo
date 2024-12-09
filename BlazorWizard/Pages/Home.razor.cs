@@ -1,3 +1,4 @@
+using BlazorWizard.Components;
 using BlazorWizard.Components.Wizard;
 using BlazorWizard.Models;
 using Microsoft.AspNetCore.Components;
@@ -34,12 +35,17 @@ public partial class Home : ComponentBase
         UserModel.Address.Country = result.Country;
     }
 
-    private void 
-        WizardFinished(WizardFinishedResult result)
+    private void WizardFinished(WizardFinishedResult result)
     {
         if (result.IsNotFinished) return;
         Console.WriteLine("Wizard Finished");
         Console.WriteLine(UserModel.ToString());
+    }
+    
+    
+    private void CarFromDatabaseLoaded(CarFromDatabaseLoadedResult result)
+    {
+        ShowNextButton = result.IsValidResult;
     }
 
     

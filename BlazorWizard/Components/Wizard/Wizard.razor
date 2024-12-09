@@ -1,35 +1,48 @@
 <CascadingValue Value="this">
-    <div id="@Id">
-        @if (ShowSteps)
-        {
-            <ul class="nav nav-pills nav-justified">
-                @foreach (var step in _steps)
-                {
-                    <li id="step-@(StepsIndex(step) + 1)" class="nav-item">
-                        <a class="nav-link @(ActiveStep == step ? "active" : "")" href="javascript: void(0)"
-                           @onclick="@(_ => SetActive(step))">@step.Title</a>
-                    </li>
-                }
-            </ul>
-        }
-        @if (ShowTitle)
-        {
-            <h3>@ActiveStep?.Title</h3>
-        }
+    <div class="@CssWizard">
+        <div id="@Id">
+            @if (ShowSteps)
+            {
+                <ul class="nav nav-pills nav-justified">
+                    @foreach (var step in _steps)
+                    {
+                        <li id="step-@(StepsIndex(step) + 1)" class="nav-item">
+                            <a class="nav-link @(ActiveStep == step ? "active" : "")" href="javascript: void(0)"
+                               @onclick="@(_ => SetActive(step))">@step.StepTitle</a>
+                        </li>
+                    }
+                </ul>
+            }
+            @if (ShowTitle)
+            {
+                <div class="@CssTitle">@ActiveStep?.StepTitle</div>
+            }
 
-        <div id="container-fluid">
-            @ChildContent
+            <div>
+                @ChildContent
+            </div>
         </div>
+
+        <hr>
+
+        <div class="d-flex flex-row">
+            @if (ShowPreviousButtonAtFirstStep && IsFirstStep)
+            {
+                <button class="@CssPreviousButton" type="button" disabled="@(IndexActiveStep == 0)"
+                        @onclick="PreviousButtonClicked">@ActiveStep?.TextPreviousButton </button>
+            }
+            else if (!IsFirstStep)
+            {
+                <button class="@CssPreviousButton" type="button" disabled="@(IndexActiveStep == 0)"
+                        @onclick="PreviousButtonClicked">@ActiveStep?.TextPreviousButton </button>
+            }
+
+            @if (ShowNextButton || (ShowSubmitButton && IsLastStep))
+            {
+                <button class="@CssNextButton" type="@(IsLastStep ? "submit" : "button")"
+                        @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? ActiveStep?.TextSubmitButton : ActiveStep?.TextNextButton)</button>
+            }
+        </div>
+
     </div>
-    <button class="@CssPreviousButton" type="button" disabled="@(IndexActiveStep == 0)"
-            @onclick="PreviousButtonClicked">@TextPreviousButton </button>
-
-
-    @if (ShowNextButton || (ShowSubmitButton && IsLastStep))
-    {
-        <button class="@CssNextButton" type="@(IsLastStep ? "submit" : "button")"
-                @onclick="NextOrSubmitButtonClicked">@(IsLastStep ? TextSubmitButton : TextNextButton)</button>
-    }
-
-
 </CascadingValue>
